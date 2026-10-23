@@ -1,0 +1,26 @@
+name: Chay Bot Moi Ngay
+
+on:
+  schedule:
+    # 01:00 UTC tương đương 08:00 sáng giờ Việt Nam. Bạn có thể đổi số 1 thành giờ khác nếu muốn.
+    - cron: '0 1 * * *'
+  # Cho phép chạy thủ công để test
+  workflow_dispatch: 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Tai ma nguon
+        uses: actions/checkout@v3
+
+      - name: Cai dat Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Cai dat thu vien requests
+        run: pip install requests
+
+      - name: Chay file bot
+        run: python tygiahomnay.py
